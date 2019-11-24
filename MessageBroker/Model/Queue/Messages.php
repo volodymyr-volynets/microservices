@@ -24,7 +24,8 @@ class Messages extends \Object\Table {
 		'mb_quemessage_channel_code' => ['name' => 'Channel Code', 'domain' => 'group_code'],
 		'mb_quemessage_chanversion_code' => ['name' => 'Channel Version Code', 'domain' => 'version_code'],
 		// body
-		'mb_quemessage_body' => ['name' => 'Body', 'type' => 'text'],
+		'mb_quemessage_body' => ['name' => 'Body', 'type' => 'json'],
+		'mb_quemessage_errors' => ['name' => 'Errors', 'type' => 'json', 'null' => true],
 		// other
 		'mb_quemessage_inactive' => ['name' => 'Inactive', 'type' => 'boolean']
 	];
@@ -50,4 +51,27 @@ class Messages extends \Object\Table {
 		'protection' => 2,
 		'scope' => 'enterprise'
 	];
+
+	/**
+	 * Nextval
+	 *
+	 * @return array
+	 */
+	public function nextvalDoubled() : array {
+		$result = [
+			'mb_quemessage_seq' => null,
+			'mb_quemessage_id' => null
+		];
+		$result['mb_quemessage_seq'] = $this->sequence('mb_quemessage_seq', 'currval', \Tenant::id());
+		if (empty($result['mb_quemessage_seq'])) {
+			$result['mb_quemessage_seq'] = $this->sequence('mb_quemessage_seq', 'nextval', \Tenant::id());
+		}
+		$result['mb_quemessage_id'] = $this->sequence('mb_quemessage_id', 'nextval', \Tenant::id());
+		// if we need to reset the sequence
+		if ($result['mb_quemessage_id'] == PHP_INT_MAX) {
+			$this->sequence('mb_quemessage_seq', 'nextval', \Tenant::id());
+			$this->db_object->setval($this->full_table_name . '_mb_quemessage_id_seq', 1, \Tenant::id(), null);
+		}
+		return $result;
+	}
 }
