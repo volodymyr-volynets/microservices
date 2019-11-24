@@ -56,10 +56,10 @@ class Messages extends \Object\Form\Wrapper\Base {
 		}
 		if ($form->hasErrors()) return;
 		if (!is_json($form->values['mb_quemessage_body'])) {
-			$form->errors(DANGER, \Object\Content\Messages::INVALID_VALUES, 'mb_quemessage_body');
+			$form->error(DANGER, \Object\Content\Messages::INVALID_VALUES, 'mb_quemessage_body');
 		}
 		if (!empty($form->values['mb_quemessage_errors']) && !is_json($form->values['mb_quemessage_errors'])) {
-			$form->errors(DANGER, \Object\Content\Messages::INVALID_VALUES, 'mb_quemessage_errors');
+			$form->error(DANGER, \Object\Content\Messages::INVALID_VALUES, 'mb_quemessage_errors');
 		}
 	}
 }

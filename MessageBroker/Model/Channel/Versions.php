@@ -30,9 +30,7 @@ class Versions extends \Object\Table {
 			'foreign_columns' => ['mb_channel_tenant_id', 'mb_channel_code']
 		],
 	];
-	public $indexes = [
-		'mb_channel_versions_fulltext_idx' => ['type' => 'fulltext', 'columns' => ['mb_chanversion_channel_code', 'mb_chanversion_code', 'mb_chanversion_name']]
-	];
+	public $indexes = [];
 	public $history = false;
 	public $audit = false;
 	public $optimistic_lock = false;
