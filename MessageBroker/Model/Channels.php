@@ -40,7 +40,9 @@ class Channels extends \Object\Table {
 		'mb_channel_name' => 'name',
 		'mb_channel_inactive' => 'inactive'
 	];
-	public $options_active = [];
+	public $options_active = [
+		'mb_channel_inactive' => 0
+	];
 	public $engine = [
 		'MySQLi' => 'InnoDB'
 	];

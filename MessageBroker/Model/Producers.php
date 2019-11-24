@@ -39,7 +39,9 @@ class Producers extends \Object\Table {
 		'mb_producer_name' => 'name',
 		'mb_producer_inactive' => 'inactive'
 	];
-	public $options_active = [];
+	public $options_active = [
+		'mb_producer_inactive' => 0
+	];
 	public $engine = [
 		'MySQLi' => 'InnoDB'
 	];

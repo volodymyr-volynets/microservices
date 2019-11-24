@@ -40,7 +40,9 @@ class Consumers extends \Object\Table {
 		'mb_consumer_name' => 'name',
 		'mb_consumer_inactive' => 'inactive'
 	];
-	public $options_active = [];
+	public $options_active = [
+		'mb_consumer_inactive' => 0
+	];
 	public $engine = [
 		'MySQLi' => 'InnoDB'
 	];
