@@ -39,6 +39,9 @@ class Messages extends \Object\Form\Wrapper\Base {
 				'mb_quemessage_body' => ['order' => 1, 'row_order' => 500, 'label_name' => 'Message Body', 'type' => 'text', 'null' => true, 'required' => true, 'percent' => 50, 'method' => 'textarea', 'rows' => 7],
 				'mb_quemessage_errors' => ['order' => 2, 'label_name' => 'Message Errors', 'type' => 'text', 'null' => true, 'percent' => 50, 'method' => 'textarea', 'rows' => 7],
 			],
+			self::HIDDEN => [
+				'__producers_token' => ['label_name' => 'Producers Token', 'domain' => 'token', 'null' => true, 'method' => 'hidden'],
+			]
 		],
 		'buttons' => [
 			self::BUTTONS => self::BUTTONS_DATA_GROUP
@@ -55,11 +58,31 @@ class Messages extends \Object\Form\Wrapper\Base {
 			$form->values = array_merge_hard($form->values, $model->nextvalDoubled());
 		}
 		if ($form->hasErrors()) return;
+		// API must provide producers token
+		if ($form->is_api) {
+			$producer = \Numbers\Microservices\MessageBroker\Model\Producers::getStatic([
+				'where' => [
+					'mb_producer_code' => $form->values['mb_quemessage_producer_code'],
+				],
+				'pk' => null,
+				'single_row' => true,
+			]);
+			if ($producer['mb_producer_token'] != $form->values['__producers_token']) {
+				$form->error(DANGER, \Object\Content\Messages::INVALID_VALUES, '__producers_token');
+			}
+		}
 		if (!is_json($form->values['mb_quemessage_body'])) {
 			$form->error(DANGER, \Object\Content\Messages::INVALID_VALUES, 'mb_quemessage_body');
 		}
 		if (!empty($form->values['mb_quemessage_errors']) && !is_json($form->values['mb_quemessage_errors'])) {
 			$form->error(DANGER, \Object\Content\Messages::INVALID_VALUES, 'mb_quemessage_errors');
 		}
+	}
+
+	public function post(& $form) {
+		$form->api_values = [
+			'mb_quemessage_seq' => $form->values['mb_quemessage_seq'],
+			'mb_quemessage_id' => $form->values['mb_quemessage_id'],
+		];
 	}
 }

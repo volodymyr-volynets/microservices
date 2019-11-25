@@ -49,8 +49,9 @@ class Consumers extends \Object\Form\Wrapper\List2 {
 		self::LIST_CONTAINER => [
 			'row1' => [
 				'mb_consumer_code' => ['order' => 1, 'label_name' => 'Code', 'domain' => 'group_code', 'null' => true, 'percent' => 15, 'url_edit' => true],
-				'mb_consumer_name' => ['order' => 2, 'label_name' => 'Name', 'domain' => 'name', 'percent' => 60],
-				'mb_consumer_inactive' => ['order' => 3, 'label_name' => 'Inactive', 'type' => 'boolean', 'percent' => 5],
+				'mb_consumer_name' => ['order' => 2, 'label_name' => 'Name', 'domain' => 'name', 'percent' => 50],
+				'mb_consumer_delivery_method' => ['order' => 3, 'label_name' => 'Delivery Method', 'domain' => 'type_code', 'percent' => 30, 'options_model' => '\Numbers\Microservices\MessageBroker\Model\Delivery\Methods'],
+				'mb_consumer_inactive' => ['order' => 4, 'label_name' => 'Inactive', 'type' => 'boolean', 'percent' => 5],
 			],
 		]
 	];

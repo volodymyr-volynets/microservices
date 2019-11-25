@@ -1,0 +1,4 @@
+1. Activate M/B Message Broker module;
+2. Create PHPUNIT producer;
+3. Create PHPUNIT channel;
+4. Create PHPUNIT1 and PHPUNIT2 consumers;

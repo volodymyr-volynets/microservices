@@ -15,5 +15,7 @@ class Types extends \Object\Data {
 		'DISTRIBUTION' => ['mb_chantype_name' => 'Distribution'],
 		'ROUND_ROBIN' => ['mb_chantype_name' => 'Round Robin'],
 		'PRIORITIZED' => ['mb_chantype_name' => 'Prioritized'],
+		'FIFO' => ['mb_chantype_name' => 'First In First Out List'],
+		'LIFO' => ['mb_chantype_name' => 'Last In First Out List'],
 	];
 }
