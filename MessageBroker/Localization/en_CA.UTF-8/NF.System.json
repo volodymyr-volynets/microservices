@@ -1,0 +1,17 @@
+{
+    "APIs": "APIs",
+    "Channels": "Channels",
+    "Consumers": "Consumers",
+    "Global": "Global",
+    "MBChannels": "M/B Channels",
+    "MBConsumers": "M/B Consumers",
+    "MBMessageBroker": "M/B Message Broker",
+    "MBMessages": "M/B Messages",
+    "MBNewMessageAPI": "M/B New Message API",
+    "MBProducers": "M/B Producers",
+    "MessageBroker": "Message Broker",
+    "Messages": "Messages",
+    "Microservices": "Microservices",
+    "Operations": "Operations",
+    "Producers": "Producers"
+}
